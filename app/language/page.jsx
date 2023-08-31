@@ -3,17 +3,21 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const page = () => {
+  // language and lavel satate
   const [language, setLanguage] = useState("");
   const [lavel, setLavel] = useState("");
 
+  // handel Language course
   const handelLanguageCourseOnChange = (e) => {
     setLanguage(e.target.value);
   };
 
+  // handel language lavel
   const handelLanguageLavelOnChange = (e) => {
     setLavel(e.target.value);
   };
 
+  // tailwind element init
   useEffect(() => {
     const init = async () => {
       const { Input, Select, initTE } = await import("tw-elements");
@@ -22,22 +26,20 @@ const page = () => {
     init();
   }, []);
 
+  // handel form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const formData = new FormData();
-      formData.append("tag", tag);
+      formData.append("language", language);
+      formData.append("lavel", lavel);
 
-      const response = await axios.post(
-        "https://smg.sisimpur.xyz/api/v1/admin/notices/store",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       console.log("API response:", response.data);
     } catch (error) {
       console.error("Error sending data:", error.message);
@@ -49,7 +51,7 @@ const page = () => {
       <section className="w-full">
         <div className="w-screen h-screen flex justify-center items-center">
           <div className=" w-96 mx-auto bg-slate-50 border rounded-xl md:p-16 xl:p-8">
-            <h2 className="mb-10 font-bold text-2xl text-center">Create Tag</h2>
+            <h2 className="mb-10 font-bold text-2xl text-center">Language</h2>
             <form action="" onSubmit={handleSubmit}>
               <div className="relative mb-5" data-te-input-wrapper-init>
                 <input

@@ -3,12 +3,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const page = () => {
+  // tage state
   const [tag, setTag] = useState("");
 
+  // handel tag change
   const handelTagOnChage = (e) => {
     setTag(e.target.value);
   };
 
+  // tailwind component init
   useEffect(() => {
     const init = async () => {
       const { Input, Select, initTE } = await import("tw-elements");
@@ -17,6 +20,7 @@ const page = () => {
     init();
   }, []);
 
+  // handel form submit
   const handleSubmit = async (event) => {
     event.preventDefault();
 
